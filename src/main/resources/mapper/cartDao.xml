@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shellming.dao.cartDao">
+    <resultMap id="cartView" type="com.shellming.entity.cart.Cart">
+        <result property="flowerNum" column="flowerNum"/>
+        <result property="flowerId" column="flowerId"/>
+        <collection property="flower" ofType="com.shellming.entity.flower.Flower">
+            <result property="flowerName" column="flowerName"/>
+            <result property="flowerDesc" column="flowerDesc"/>
+            <result property="disPrice" column="disPrice"/>
+            <result property="flowerThumb" column="flowerThumb"/>
+        </collection>
+    </resultMap>
+    <select id="findCartDetailByOpenId" resultMap="cartView">
+        SELECT
+            cart.flowerId,
+            flower.flowerName,
+            flower.flowerDesc,
+            flower.disPrice,
+            flower.flowerThumb,
+            cart.flowerNum
+        FROM
+            cart
+                INNER JOIN flower ON cart.flowerId = flower.flowerId
+        WHERE
+            cart.openid=#{openid}
+    </select>
+<update id="addFlowerInCart">
+    <selectKey keyProperty="count" order="BEFORE" resultType="Cart">
+        select count(*) count FROM cart WHERE openId=#{openId} AND flowerId= #{flowerId};
+    </selectKey>
+    <if test="count==0" >
+        INSERT INTO cart (openId,flowerId,flowerNum) VALUES (#{openId},#{flowerId},1);
+    </if>
+    <if test="count!=0">
+        UPDATE cart SET flowerNum=flowerNum+1 WHERE openId=#{openId} AND flowerId= #{flowerId};
+    </if>
+
+</update>
+    <update id="lessFlowerInCart">
+        update cart set flowerNum=flowerNum-1 where openId=#{openId} AND flowerId=#{flowerId} and flowerNum>0;
+    </update>
+
+    <delete id="delFlowerInCart">
+        delete from cart where openId=#{openId} and flowerId=#{flowerId};
+    </delete>
+    <select id="countCartNumber" resultType="int">
+        select count(*) from cart where openId=#{openId};
+    </select>
+
+</mapper>

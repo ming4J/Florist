@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shellming.dao.addressDao">
+    <insert id="addAdress">
+        insert into address(openId, adressId, receName, gender, phoneNum, address, def)
+        value (#{openId}, UUID_SHORT(), #{receName}, #{gender}, #{phoneNum}, #{address}, #{def})
+    </insert>
+<select id="listAddress" resultType="adress">
+    select * from address where openId=#{openId}
+</select>
+    <delete id="delAddress">
+        delete from address where openId=#{openId} and adressId=#{adressId}
+    </delete>
+    <select id="showAddressById" resultType="adress">
+        select * from address where openId=#{openId} and adressId=#{adressId}
+    </select>
+    <update id="editAddress">
+        update address set receName=#{receName},gender=#{gender},phoneNum=#{phoneNum},address=#{address},def=#{def}
+        where openId=#{openId} and adressId=#{adressId}
+    </update>
+</mapper>
