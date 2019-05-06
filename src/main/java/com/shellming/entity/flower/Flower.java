@@ -2,7 +2,7 @@ package com.shellming.entity.flower;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class Flower {
     private int rated;
     private String scene;
     private String color;
-    private int material;
+    private String material;
     private String bannerString;
     private String detailPicString;
     private String flowerSpecString;
@@ -31,6 +31,10 @@ public class Flower {
     private List<flowerSpec>flowerSpec;
     private int showIndex;
     private String flowerThumb;
+    private int orderBySaleVol;
+    private int orderByPrice;
+    private int orderByTime;
+    private int orderByRated;
 
     public Flower(){
 
@@ -190,12 +194,44 @@ public class Flower {
         this.color = color;
     }
 
-    public int getMaterial() {
+    public String getMaterial() {
         return material;
     }
 
-    public void setMaterial(int material) {
+    public void setMaterial(String material) {
         this.material = material;
+    }
+
+    public int getOrderBySaleVol() {
+        return orderBySaleVol;
+    }
+
+    public void setOrderBySaleVol(int orderBySaleVol) {
+        this.orderBySaleVol = orderBySaleVol;
+    }
+
+    public int getOrderByPrice() {
+        return orderByPrice;
+    }
+
+    public void setOrderByPrice(int orderByPrice) {
+        this.orderByPrice = orderByPrice;
+    }
+
+    public int getOrderByTime() {
+        return orderByTime;
+    }
+
+    public void setOrderByTime(int orderByTime) {
+        this.orderByTime = orderByTime;
+    }
+
+    public int getOrderByRated() {
+        return orderByRated;
+    }
+
+    public void setOrderByRated(int orderByRated) {
+        this.orderByRated = orderByRated;
     }
 
     public List<com.shellming.entity.flower.banner> getBanner() {
@@ -245,7 +281,7 @@ public class Flower {
                 ", rated=" + rated +
                 ", scene='" + scene + '\'' +
                 ", color='" + color + '\'' +
-                ", material=" + material +
+                ", material='" + material + '\'' +
                 ", bannerString='" + bannerString + '\'' +
                 ", detailPicString='" + detailPicString + '\'' +
                 ", flowerSpecString='" + flowerSpecString + '\'' +
@@ -254,6 +290,10 @@ public class Flower {
                 ", flowerSpec=" + flowerSpec +
                 ", showIndex=" + showIndex +
                 ", flowerThumb='" + flowerThumb + '\'' +
+                ", orderBySaleVol=" + orderBySaleVol +
+                ", orderByPrice=" + orderByPrice +
+                ", OrderByTime=" + orderByTime +
+                ", OrderByRated=" + orderByRated +
                 '}';
     }
 }

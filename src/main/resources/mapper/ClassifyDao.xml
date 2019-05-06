@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shellming.dao.ClassifyDao">
+    <resultMap id="show" type="com.shellming.entity.ClassifyIndex">
+        <id property="id" column="id"></id>
+        <result property="content" column="content"/>
+      <collection property="classifyItem" ofType="ClassifyItem">
+          <id property="itemId" column="itemId"/>
+          <result property="parentId" column="parentId"/>
+          <result property="itemContent" column="itemContent"/>
+          <result property="imgUrl" column="imgUrl"/>
+          <result property="redirectUrl" column="redirectUrl"/>
+      </collection>
+
+    </resultMap>
+    <select id="showClassify" resultMap="show">
+        SELECT
+            *
+        FROM
+            classifyindex,classifyitem
+        WHERE
+            classifyindex.id=classifyitem.parentId
+    </select>
+    <select id="showHotsale" resultType="com.shellming.entity.flower.Flower">
+        SELECT flowerId,flowerName,salesVol,disPrice,flowerThumb from flower GROUP BY flowerId ORDER BY flower.salesVol DESC LIMIT 12
+    </select>
+</mapper>

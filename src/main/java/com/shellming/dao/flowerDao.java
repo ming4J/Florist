@@ -8,4 +8,5 @@ public interface flowerDao {
     List<Flower> hotSaling(int showIndex);
     List<Flower> scene(String Scene);
     Flower findFlowerById(int flowerId);
+
 }
