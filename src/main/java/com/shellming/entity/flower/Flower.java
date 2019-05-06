@@ -18,7 +18,7 @@ public class Flower {
     private Double price;
     private int salesVol;
     private int stock;
-    private int category;
+    private String category;
     private int rated;
     private String scene;
     private String color;
@@ -162,11 +162,11 @@ public class Flower {
         this.stock = stock;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

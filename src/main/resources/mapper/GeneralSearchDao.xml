@@ -4,6 +4,82 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shellming.dao.GeneralSearchDao">
     <select id="generalSearch" resultType="Flower">
-        SELECT flowerId,flowerName,price,disPrice,flowerThumb,createTime,flowerThumb,flowerDesc,salesVol
+        SELECT flowerId,material,category,scene,flowerName,price,disPrice,flowerThumb,createTime,flowerThumb,flowerDesc,salesVol
+            from flower
+        <where>
+            <if test="category!=null">
+                category = #{category}
+            </if>
+            <if test="material!=null">
+                material = #{material}
+            </if>
+            <if test="scene!=null">
+                scene = #{scene}
+            </if>
+        </where>
+    </select>
+    <select id="generalSearchSort" resultType="Flower">
+        SELECT flowerId,material,category,scene,flowerName,price,disPrice,flowerThumb,createTime,flowerThumb,flowerDesc,salesVol
+        from flower
+      <where>
+            <choose>
+                <when test="category!=null">
+                    <if test="orderBySaleVol==1">
+                        category=#{category} ORDER BY salesVol DESC
+                    </if>
+                    <if test="orderByTime==1">
+                        category=#{category} ORDER BY createTime DESC
+                    </if>
+                    <if test="orderByRated==1">
+                        category=#{category} ORDER BY rated DESC
+                    </if>
+                    <if test="orderByPrice==1">
+                        category=#{category} ORDER BY disPrice DESC
+                    </if>
+                    <if test="orderByPrice==-1">
+                        category=#{category} ORDER BY disPrice ASC
+                    </if>
+                </when>
+            </choose>
+          <choose>
+              <when test="scene!=null">
+                  <if test="orderBySaleVol==1">
+                      scene=#{scene} ORDER BY salesVol DESC
+                  </if>
+                  <if test="orderByTime==1">
+                      scene=#{scene} ORDER BY createTime DESC
+                  </if>
+                  <if test="orderByRated==1">
+                      scene=#{scene} ORDER BY rated DESC
+                  </if>
+                  <if test="orderByPrice==1">
+                      scene=#{scene} ORDER BY disPrice DESC
+                  </if>
+                  <if test="orderByPrice==-1">
+                      scene=#{scene} ORDER BY disPrice ASC
+                  </if>
+              </when>
+          </choose>
+          <choose>
+              <when test="material!=null">
+                  <if test="orderBySaleVol==1">
+                      material=#{material} ORDER BY salesVol DESC
+                  </if>
+                  <if test="orderByTime==1">
+                      material=#{material} ORDER BY createTime DESC
+                  </if>
+                  <if test="orderByRated==1">
+                      material=#{material} ORDER BY rated DESC
+                  </if>
+                  <if test="orderByPrice==1">
+                      material=#{material} ORDER BY disPrice DESC
+                  </if>
+                  <if test="orderByPrice==-1">
+                      material=#{material} ORDER BY disPrice ASC
+                  </if>
+              </when>
+          </choose>
+
+      </where>
     </select>
 </mapper>

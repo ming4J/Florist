@@ -1,9 +1,11 @@
 package com.shellming.dao;
 
 import com.shellming.entity.flower.Flower;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface GeneralSearchDao {
-    List<Flower> generalSearch(String category,String scene,String material,int orderBySaleVol,int orderByPrice,int orderByTime,int orderByRated);
+    List <Flower> generalSearchSort(Flower flower);
+    List<Flower> generalSearch(Flower flower);
 }

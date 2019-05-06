@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shellming.dao.CommentDao">
+    <insert id="doComment">
+        INSERT into comment(openid,flowerid,content,crated)values(#{openId},#{flowerId},#{content},#{crated})
+    </insert>
+
+    <resultMap id="show" type="Comment">
+        <result property="flowerId" column="flowerId"/>
+        <result property="content" column="content"/>
+        <result property="crated" column="crated"/>
+        <result property="openId" column="openId"/>
+        <collection property="users" ofType="Users">
+            <result property="nickname" column="nickname"/>
+            <result property="avatar" column="avatar"/>
+        </collection>
+
+    </resultMap>
+<select id="listCommentByFlowerId" resultMap="show">
+    SELECT nickname,avatar,crated,content FROM users,`comment` WHERE users.openid=`comment`.openid AND `comment`.flowerid=#{flowerId}
+</select>
+</mapper>

@@ -4,6 +4,15 @@ public class Users {
     private String openId;
     private String nickname;
     private int status;
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getOpenId() {
         return openId;
@@ -31,10 +40,11 @@ public class Users {
 
     @Override
     public String toString() {
-        return "adress{" +
+        return "Users{" +
                 "openId='" + openId + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", status=" + status +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
