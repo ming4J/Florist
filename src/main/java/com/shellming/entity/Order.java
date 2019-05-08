@@ -1,15 +1,9 @@
 package com.shellming.entity;
 
-
-import com.shellming.entity.flower.Flower;
-
-import java.util.List;
-
 public class Order {
     private String orderId;
     private String openId;
-    private List<Flower> flower;
-    private int flowerNum;
+    private double totalPrice;
     private int orderStatus;
     private int payStatus;
 
@@ -29,12 +23,12 @@ public class Order {
         this.openId = openId;
     }
 
-    public List<Flower> getFlower() {
-        return flower;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setFlower(List<Flower> flower) {
-        this.flower = flower;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public int getOrderStatus() {
@@ -49,14 +43,6 @@ public class Order {
         return payStatus;
     }
 
-    public int getFlowerNum() {
-        return flowerNum;
-    }
-
-    public void setFlowerNum(int flowerNum) {
-        this.flowerNum = flowerNum;
-    }
-
     public void setPayStatus(int payStatus) {
         this.payStatus = payStatus;
     }
@@ -66,8 +52,7 @@ public class Order {
         return "Order{" +
                 "orderId='" + orderId + '\'' +
                 ", openId='" + openId + '\'' +
-                ", flower=" + flower +
-                ", flowerNum=" + flowerNum +
+                ", totalPrice=" + totalPrice +
                 ", orderStatus=" + orderStatus +
                 ", payStatus=" + payStatus +
                 '}';

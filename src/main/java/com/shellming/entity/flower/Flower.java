@@ -35,6 +35,7 @@ public class Flower {
     private int orderByPrice;
     private int orderByTime;
     private int orderByRated;
+    private int flowerNum;
 
     public Flower(){
 
@@ -96,7 +97,13 @@ public class Flower {
         }
     }
 
+    public int getFlowerNum() {
+        return flowerNum;
+    }
 
+    public void setFlowerNum(int flowerNum) {
+        this.flowerNum = flowerNum;
+    }
 
     public String getFlowerThumb() {
         return flowerThumb;
@@ -277,7 +284,7 @@ public class Flower {
                 ", price=" + price +
                 ", salesVol=" + salesVol +
                 ", stock=" + stock +
-                ", category=" + category +
+                ", category='" + category + '\'' +
                 ", rated=" + rated +
                 ", scene='" + scene + '\'' +
                 ", color='" + color + '\'' +
@@ -292,8 +299,9 @@ public class Flower {
                 ", flowerThumb='" + flowerThumb + '\'' +
                 ", orderBySaleVol=" + orderBySaleVol +
                 ", orderByPrice=" + orderByPrice +
-                ", OrderByTime=" + orderByTime +
-                ", OrderByRated=" + orderByRated +
+                ", orderByTime=" + orderByTime +
+                ", orderByRated=" + orderByRated +
+                ", flowerNum=" + flowerNum +
                 '}';
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shellming.dao.OrderBuy">
+    <!--<resultMap id="buy" type="OrderDetail">
+        <result property="openId" column="openId"/>
+        <result property="orderId" column="orderId"/>
+        <collection property="flower" ofType="Flower">
+            <result property="flowerId" column="flowerId"/>
+            <result property="flowerName" column="flowerName"/>
+            <result property="disPrice" column="disPrice"/>
+            <result property="flowerNum" column="flowerNum"/>
+        </collection>
+    </resultMap> -->
+    <insert id="buyDetail" parameterType="java.util.List" >
+       INSERT INTO orderDetail (openId, orderId, flowerId, flowerName, disPrice, flowerNum) VALUES
+        <foreach item="item" collection="orderDetail" index="index" separator=",">
+            (
+            #{item.openId,jdbcType=VARCHAR},
+            #{item.orderId,jdbcType=VARCHAR},
+            #{item.flowerId,jdbcType=INTEGER},
+            #{item.flowerName,jdbcType=VARCHAR},
+            #{item.disPrice,jdbcType=DOUBLE},
+            #{item.flowerNum,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+</mapper>
