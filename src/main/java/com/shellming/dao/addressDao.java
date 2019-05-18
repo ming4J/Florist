@@ -11,4 +11,6 @@ public interface addressDao {
     void delAddress(adress adress);
     adress showAddressById(adress adress);
     void editAddress(adress adress);
+    void updateAddressTop(adress adress);
+    void top();
 }

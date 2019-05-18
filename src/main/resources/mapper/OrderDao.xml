@@ -7,5 +7,8 @@
     <insert id="buyFlower" >
         INSERT into `order` (orderId, openId, orderStatus, payStatus) VALUES (#{orderId}, #{openId}, 0, 0)
     </insert>
+    <update id="updateStatus">
+        update `order` set payStatus=#{status} where orderId=#{orderId}
+    </update>
 
 </mapper>

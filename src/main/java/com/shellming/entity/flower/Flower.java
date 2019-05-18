@@ -28,7 +28,7 @@ public class Flower {
     private String flowerSpecString;
     private List<banner> banner;
     private List<detailPic>detailPic;
-    private List<flowerSpec>flowerSpec;
+    private String flowerSpec;
     private int showIndex;
     private String flowerThumb;
     private int orderBySaleVol;
@@ -79,23 +79,7 @@ public class Flower {
 
     }
 
-    public String getFlowerSpecString() {
-        return flowerSpecString;
-    }
 
-    public void setFlowerSpecString(String flowerSpecString) {
-        ObjectMapper objectMapper=new ObjectMapper();
-        try{
-            @SuppressWarnings("unchecked")
-            List<flowerSpec> list=objectMapper.readValue(flowerSpecString,List.class);
-            setFlowerSpec(list);
-            this.flowerSpecString=flowerSpecString;
-
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }
-    }
 
     public int getFlowerNum() {
         return flowerNum;
@@ -257,12 +241,11 @@ public class Flower {
         this.detailPic = detailPic;
     }
 
-    public List<com.shellming.entity.flower.flowerSpec> getFlowerSpec() {
+    public String getFlowerSpec() {
         return flowerSpec;
     }
 
-
-    public void setFlowerSpec(List<com.shellming.entity.flower.flowerSpec> flowerSpec) {
+    public void setFlowerSpec(String flowerSpec) {
         this.flowerSpec = flowerSpec;
     }
 
@@ -294,7 +277,7 @@ public class Flower {
                 ", flowerSpecString='" + flowerSpecString + '\'' +
                 ", banner=" + banner +
                 ", detailPic=" + detailPic +
-                ", flowerSpec=" + flowerSpec +
+                ", flowerSpec='" + flowerSpec + '\'' +
                 ", showIndex=" + showIndex +
                 ", flowerThumb='" + flowerThumb + '\'' +
                 ", orderBySaleVol=" + orderBySaleVol +

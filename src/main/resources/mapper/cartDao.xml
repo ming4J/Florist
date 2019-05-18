@@ -47,7 +47,7 @@
         delete from cart where openId=#{openId} and flowerId=#{flowerId};
     </delete>
     <select id="countCartNumber" resultType="int">
-        select count(*) from cart where openId=#{openId};
+        select IFNULL(sum(flowerNum),0) from cart WHERE openId=#{openId}
     </select>
 
 </mapper>

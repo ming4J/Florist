@@ -16,12 +16,34 @@
             <if test="scene!=null">
                 scene = #{scene}
             </if>
+            <if test="flowerSpec!=null">
+                flowerSpec = #{flowerSpec}
+            </if>
         </where>
     </select>
     <select id="generalSearchSort" resultType="Flower">
         SELECT flowerId,material,category,scene,flowerName,price,disPrice,flowerThumb,createTime,flowerThumb,flowerDesc,salesVol
         from flower
       <where>
+          <choose>
+              <when test="flowerSpec!=null">
+                  <if test="orderBySaleVol==1">
+                      flowerSpec=#{flowerSpec} ORDER BY salesVol DESC
+                  </if>
+                  <if test="orderByTime==1">
+                      flowerSpec=#{flowerSpec} ORDER BY createTime DESC
+                  </if>
+                  <if test="orderByRated==1">
+                      flowerSpec=#{flowerSpec} ORDER BY rated DESC
+                  </if>
+                  <if test="orderByPrice==1">
+                      flowerSpec=#{flowerSpec} ORDER BY disPrice DESC
+                  </if>
+                  <if test="orderByPrice==-1">
+                      flowerSpec=#{flowerSpec} ORDER BY disPrice ASC
+                  </if>
+              </when>
+          </choose>
             <choose>
                 <when test="category!=null">
                     <if test="orderBySaleVol==1">

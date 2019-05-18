@@ -1,5 +1,6 @@
 package com.shellming.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.shellming.dao.addressDao;
 import com.shellming.entity.adress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,14 @@ public class addressController {
     @Autowired
     private addressDao addressDao;
 
+
     @RequestMapping(value = "/address",method = RequestMethod.POST)
     public @ResponseBody
-    void addAdress(@RequestBody adress adress){
+    JSONObject addAdress(@RequestBody adress adress){
         addressDao.addAdress(adress);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.fluentPut("status","add");
+        return jsonObject;
     }
 
     @RequestMapping(value = "/address/{openId}",method = RequestMethod.GET)
@@ -27,8 +32,11 @@ public class addressController {
 
     @RequestMapping(value = "/address/del",method = RequestMethod.POST)
     public @ResponseBody
-    void delAdress(@RequestBody adress adress){
+    JSONObject delAdress(@RequestBody adress adress){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.fluentPut("status","del");
         addressDao.delAddress(adress);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/address/one",method = RequestMethod.POST)
@@ -38,7 +46,29 @@ public class addressController {
     }
     @RequestMapping(value = "/address/edit",method = RequestMethod.POST)
     public @ResponseBody
-    void editAddress(@RequestBody adress adress){
+    JSONObject editAddress(@RequestBody adress adress){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.fluentPut("status","edit");
         addressDao.editAddress(adress);
+        return jsonObject;
     }
+    @RequestMapping(value = "/address/top",method = RequestMethod.POST)
+    public @ResponseBody
+    JSONObject topAddress(@RequestBody adress adress){
+        System.err.println(adress);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.fluentPut("status","top");
+        addressDao.updateAddressTop(adress);
+        return jsonObject;
+    }
+    @RequestMapping(value = "/address/top/m",method = RequestMethod.POST)
+    public @ResponseBody
+    JSONObject top(){
+
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.fluentPut("status","masterTop");
+        addressDao.top();
+        return jsonObject;
+    }
+
 }

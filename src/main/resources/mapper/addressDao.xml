@@ -20,4 +20,12 @@
         update address set receName=#{receName},gender=#{gender},phoneNum=#{phoneNum},address=#{address},def=#{def}
         where openId=#{openId} and adressId=#{adressId}
     </update>
+    <update id="updateAddressTop">
+        update address set def=0 where openId=#{openId} and adressId not in(#{adressId});
+        update address set def=1 where openId=#{openId} and adressId=#{adressId};
+    </update>
+    <update id="top">
+        update address set def=0;
+    </update>
+
 </mapper>

@@ -26,5 +26,8 @@
             )
         </foreach>
     </insert>
+    <delete id="delcart">
+        delete from cart where openId=#{openId}
+    </delete>
 
 </mapper>

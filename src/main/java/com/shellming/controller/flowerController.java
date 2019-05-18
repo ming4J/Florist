@@ -25,7 +25,7 @@ public class flowerController {
     }
 
     @ApiOperation(value = "快速选花",tags = {"首页"},notes = "GET请求")
-    @RequestMapping(value = "/all/{scene}",method = RequestMethod.GET)
+    @RequestMapping(value = "/all/scene/{scene}",method = RequestMethod.GET)
     public @ResponseBody List<Flower> scene(@ApiParam(name = "scene",value = "送花场景的快速选花",required = true) @PathVariable String scene){
         return flowerDao.scene(scene);
     }

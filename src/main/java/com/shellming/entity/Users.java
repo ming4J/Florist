@@ -1,10 +1,19 @@
 package com.shellming.entity;
 
 public class Users {
+    private String code;
     private String openId;
     private String nickname;
     private int status;
     private String avatar;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getAvatar() {
         return avatar;
@@ -41,7 +50,8 @@ public class Users {
     @Override
     public String toString() {
         return "Users{" +
-                "openId='" + openId + '\'' +
+                "code='" + code + '\'' +
+                ", openId='" + openId + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", status=" + status +
                 ", avatar='" + avatar + '\'' +

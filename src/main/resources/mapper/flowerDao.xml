@@ -5,14 +5,14 @@
 <mapper namespace="com.shellming.dao.flowerDao">
     <resultMap id="hot" type="com.shellming.entity.flower.Flower">
         <result column="banner" jdbcType="VARCHAR" property="bannerString"/>
-        <result column="flowerSpec" jdbcType="VARCHAR" property="flowerSpecString"/>
+
         <result column="detailPic" jdbcType="VARCHAR" property="detailPicString"/>
     </resultMap>
     <select id="hotSaling" resultMap="hot" >
         select flowerId,flowerName,flowerThumb,disPrice from flower where showIndex=#{showIndex}
     </select>
     <select id="scene" resultMap="hot">
-        select flowerId,flowerName,flowerThumb,disPrice from flower where scene=#{scene}
+        select flowerId,flowerDesc,flowerName,flowerThumb,salesVol,price,disPrice from flower where scene=#{scene}
     </select>
     <select id="findFlowerById" resultMap="hot">
         select flowerId,banner,flowerName,flowerDesc,disPrice,price,salesVol,detailPic from flower where flowerId=#{flowerId}
